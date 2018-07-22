@@ -1,0 +1,9 @@
+/.vs
+/Debug
+/*/Debug
+/_ReSharper.Caches
+/di-cpp14
+/packages
+/*/bin
+/*/obj
+*.user
