@@ -6,23 +6,23 @@ interface IDoSomethingable
     void DoSomething();
 }
 
-interface IA
+interface IWhat
 {
     string What();
 }
 
-interface IB
+interface ITimes
 {
     int Times();
 }
 
 class DoSomethinger : IDoSomethingable
 {
-    private readonly IA _a;
-    private readonly IB _b;
+    private readonly IWhat _a;
+    private readonly ITimes _b;
 
     // Note that the compiler thinks this is unused...
-    public DoSomethinger(IA a, IB b)
+    public DoSomethinger(IWhat a, ITimes b)
     {
         _a = a;
         _b = b;
@@ -36,7 +36,7 @@ class DoSomethinger : IDoSomethingable
     }
 }
 
-class A : IA
+class ProductionWhat : IWhat
 {
     public string What()
     {
@@ -44,7 +44,7 @@ class A : IA
     }
 }
 
-class TestA : IA
+class TestWhat : IWhat
 {
     public string What()
     {
@@ -52,11 +52,11 @@ class TestA : IA
     }
 }
 
-class B : IB
+class ProductionTimes : ITimes
 {
     private readonly int _times;
 
-    public B(int times)
+    public ProductionTimes(int times)
     {
         _times = times;
     }
@@ -67,21 +67,21 @@ class B : IB
     }
 }
 
-class DemoModule : Ninject.Modules.NinjectModule
+class ProductionModule : Ninject.Modules.NinjectModule
 {
     public override void Load()
     {
         Bind<IDoSomethingable>().To<DoSomethinger>();
 
-        Bind<IA>().To<A>();
+        Bind<IWhat>().To<ProductionWhat>();
         // Note that this does not compile:
-        //Bind<IB>().To<A>();
+        //Bind<ITimes>().To<ProductionWhat>();
 
-        Bind<IB>().ToMethod(context => new B(3));
+        Bind<ITimes>().ToMethod(context => new ProductionTimes(3));
         // Note that this is a runtime error:
-        //Bind<IB>().To<B>();
+        //Bind<ITimes>().To<ProductionTimes>();
         // Unless you fix it by this:
-        //Bind<int>().ToConstant(5);
+        //Bind<int>().ToConstant(3);
     }
 }
 
@@ -97,21 +97,21 @@ namespace ninject_demo
 
         static void Real()
         {
-            IKernel kernel = new StandardKernel(new DemoModule());
+            IKernel productionKernel = new StandardKernel(new ProductionModule());
             
-            var dosomethingable = kernel.Get<IDoSomethingable>();
+            var dosomethingable = productionKernel.Get<IDoSomethingable>();
             dosomethingable.DoSomething();
         }
 
         static void Test()
         {
-            IKernel kernel = new StandardKernel(new DemoModule());
+            IKernel testKernel = new StandardKernel(new ProductionModule());
 
             // Note that even if the object hierarchy changes, nothing changes in this test!!!
-            kernel.Rebind<IA>().To<TestA>();
-            kernel.Rebind<IB>().ToMethod(context => new B(2));
+            testKernel.Rebind<IWhat>().To<TestWhat>();
+            testKernel.Rebind<ITimes>().ToMethod(context => new ProductionTimes(2));
             
-            var dosomethingable = kernel.Get<IDoSomethingable>();
+            var dosomethingable = testKernel.Get<IDoSomethingable>();
             dosomethingable.DoSomething();
         }
     }
