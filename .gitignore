@@ -1,6 +1,10 @@
 /.vs
 /Debug
 /*/Debug
+/Release
+/*/Release
+/x64
+/*/x64
 /_ReSharper.Caches
 /di-cpp14
 /packages
