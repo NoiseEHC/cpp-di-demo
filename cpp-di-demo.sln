@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpp-di-demo", "cpp-di-demo\cpp-di-demo.vcxproj", "{4129CE88-DCF9-43D2-A293-CC635125AF1C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ninject-demo", "ninject-demo\ninject-demo.csproj", "{9A98A2A5-3312-414B-A0F9-A8A2A1DE73A6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boost-di-demo-1", "boost-di-demo-1\boost-di-demo-1.vcxproj", "{B1B6EAFC-5885-44B1-91F2-F323EE2DFD26}"
@@ -19,16 +17,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Debug|x64.ActiveCfg = Debug|x64
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Debug|x64.Build.0 = Debug|x64
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Debug|x86.ActiveCfg = Debug|Win32
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Debug|x86.Build.0 = Debug|Win32
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Release|Any CPU.ActiveCfg = Release|Win32
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Release|x64.ActiveCfg = Release|x64
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Release|x64.Build.0 = Release|x64
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Release|x86.ActiveCfg = Release|Win32
-		{4129CE88-DCF9-43D2-A293-CC635125AF1C}.Release|x86.Build.0 = Release|Win32
 		{9A98A2A5-3312-414B-A0F9-A8A2A1DE73A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A98A2A5-3312-414B-A0F9-A8A2A1DE73A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A98A2A5-3312-414B-A0F9-A8A2A1DE73A6}.Debug|x64.ActiveCfg = Debug|Any CPU
